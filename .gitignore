@@ -1,0 +1,41 @@
+
+# Ingore Gradle project-specific cache directory.
+.gradle/
+
+# Ignore Gradle, maven build output directory.
+build/
+bin/
+target/
+log/
+
+# temp files
+*.swp
+*.pid
+
+# visual studio
+*.sdf
+*.suo
+.vs/
+ipch/
+*.VC.VC.opendb
+*.VC.db
+.svn/
+*.DotSettings.user
+*/Debug/
+Debug/
+intermediate_file/
+
+# *.vcxproj.user
+*.opensdf
+*.pdb
+
+# log files
+*.log
+
+# sublime
+*.sublime-workspace
+.idea/
+
+# nuget package
+packages/*/lib/
+packages/*/build/
