@@ -44,7 +44,7 @@
                         <image>
                             <name>${prop}-dmp-lib</name>
                             <build>
-                                <from>adoptopenjdk/openjdk11:alpine-jre</from>
+                                <from>adoptopenjdk/openjdk11:alpine</from>
                                 <env>
                                     <vm_opt>-Dvm_opt=a1</vm_opt>
                                     <app_param1>${prop}</app_param1>
