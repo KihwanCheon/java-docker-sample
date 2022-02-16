@@ -8,14 +8,8 @@
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>log/app.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>log/app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxHistory>50</maxHistory>
-            <maxFileSize>100MB</maxFileSize>
-            <totalSizeCap>5G</totalSizeCap>
-        </rollingPolicy>
         <encoder>
             <pattern>[%d{ISO8601}][%-5level][%thread][%logger{10}:%L] %msg%n</pattern>
         </encoder>
