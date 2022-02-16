@@ -46,13 +46,24 @@
                             <build>
                                 <from>adoptopenjdk/openjdk11:alpine</from>
                                 <env>
+                                    <TZ>Asia/Seoul</TZ>
                                     <vm_opt>-Dvm_opt=a1</vm_opt>
                                     <app_param1>${prop}</app_param1>
                                 </env>
                                 <entryPoint>
+                                    <!-- gc log for https://github.com/chewiebug/GCViewer/releases 1.36 -->
                                     <shell>java -cp "app-lib/*" \
                                         -Duser.timezone=Asia/Seoul $vm_opt \
                                         -Djava.security.egd=file:/dev/./urandom \
+                                        -Xlog:gc*:file=log/gc.log:tags,time,uptime,level:filecount=5,filesize=20M \
+                                        -XX:+HeapDumpOnOutOfMemoryError \
+                                        -XX:HeapDumpPath=log/oome.hprof \
+                                        -Dcom.sun.management.jmxremote \
+                                        -Dcom.sun.management.jmxremote.authenticate=false \
+                                        -Dcom.sun.management.jmxremote.port=12091 \
+                                        -Dcom.sun.management.jmxremote.rmi.port=12091 \
+                                        -Djava.rmi.server.hostname=0.0.0.0 \
+                                        -Dcom.sun.management.jmxremote.ssl=false \
                                         example.docker.java.dmp.App $app_param1 $app_param2
                                     </shell>
                                 </entryPoint>

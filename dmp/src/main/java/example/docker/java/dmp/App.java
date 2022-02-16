@@ -13,6 +13,6 @@ public class App {
         for (var arg: args) {
             log.info("arg:{}", arg);
         }
-        Thread.sleep(60000);
+        Thread.sleep(600000);
     }
 }
