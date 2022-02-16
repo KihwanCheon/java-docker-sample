@@ -1,0 +1,24 @@
+<configuration>
+
+    <appender name="FILE_ASYNC" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>log/app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>50</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>5G</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{ISO8601}][%-5level][%thread][%logger{10}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE_ASYNC"/>
+    </appender>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+</configuration>
