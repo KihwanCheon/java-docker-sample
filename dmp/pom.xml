@@ -52,8 +52,10 @@
                                 </env>
                                 <entryPoint>
                                     <!-- gc log for https://github.com/chewiebug/GCViewer/releases 1.36 -->
+                                    <!-- jmx https://stackoverflow.com/questions/31257968/how-to-access-jmx-interface-in-docker-from-outside -->
+                                    <!-- -Djava.rmi.server.hostname=hostip for -net host  -->
                                     <shell>java -cp "app-lib/*" \
-                                        -Duser.timezone=Asia/Seoul $vm_opt \
+                                        -Duser.timezone=Asia/Seoul \
                                         -Djava.security.egd=file:/dev/./urandom \
                                         -Xlog:gc*:file=log/gc.log:tags,time,uptime,level:filecount=5,filesize=20M \
                                         -XX:+HeapDumpOnOutOfMemoryError \
@@ -63,7 +65,9 @@
                                         -Dcom.sun.management.jmxremote.port=12091 \
                                         -Dcom.sun.management.jmxremote.rmi.port=12091 \
                                         -Djava.rmi.server.hostname=0.0.0.0 \
+                                        -Dcom.sun.management.jmxremote.local.only=false \
                                         -Dcom.sun.management.jmxremote.ssl=false \
+                                        $vm_opt \
                                         example.docker.java.dmp.App $app_param1 $app_param2
                                     </shell>
                                 </entryPoint>
